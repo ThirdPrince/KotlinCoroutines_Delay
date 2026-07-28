@@ -4,6 +4,7 @@ import kotlinx.coroutines.CancellableContinuation
 import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Delay
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.Runnable
 
@@ -19,6 +20,7 @@ class HandlerDispatcher(private val handler: Handler) : CoroutineDispatcher(), D
     override fun dispatch(context: CoroutineContext, block: Runnable) {
         handler.post(block)
     }
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun scheduleResumeAfterDelay(timeMillis: Long, continuation: CancellableContinuation<Unit>) {
         // 1. 把“恢复协程”的动作包装成一个 Runnable
         val block = Runnable {

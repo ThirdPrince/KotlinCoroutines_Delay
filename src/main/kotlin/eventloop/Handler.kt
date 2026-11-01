@@ -14,11 +14,6 @@ open class Handler {
         mQueue = mLooper.mQueue
     }
 
-    // 允许绑定指定 Looper 的构造函数
-    constructor(looper: Looper) {
-        mLooper = looper
-        mQueue = looper.mQueue
-    }
 
     // 发送即时消息
     fun sendMessage(msg: Message): Boolean {
